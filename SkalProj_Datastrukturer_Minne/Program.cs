@@ -76,8 +76,7 @@ namespace SkalProj_Datastrukturer_Minne
             List<string> theList = new List<string>();
             while (true)
             {
-                Console.WriteLine(
-                    " +word = add 'word' to the list\n -word = remove 'word' from the list\n x = exit to main menu");
+                Console.WriteLine(" +word = add 'word' to the list\n -word = remove 'word' from the list\n x = exit to main menu");
                 string input = Console.ReadLine(); //  +Pölsa   -Pölsa
                 char nav = input[0]; // + or -
                 string value = input.Substring(1); // Pölsa
@@ -122,6 +121,35 @@ namespace SkalProj_Datastrukturer_Minne
              * Create a switch with cases to enqueue items or dequeue items
              * Make sure to look at the queue after Enqueueing and Dequeueing to see how it behaves
             */
+            Queue<string> theList = new Queue<string>();
+            while (true)
+            {
+                Console.WriteLine(" +name = add 'name' to the queue\n - = remove the first in the queue \n x = exit to main menu");
+                string input = Console.ReadLine(); //  +Pölsa   -Pölsa
+                char nav = input[0]; // + or -
+                string value = input.Substring(1); // Pölsa
+                switch (nav)
+                {
+                    case '+':
+                        theList.Enqueue(value);
+                        Console.WriteLine($"Add: '{value}', Count: {theList.Count}");
+                        break;
+                    case '-':
+                        if (theList.Count == 0)
+                        {
+                            Console.WriteLine("The queue is already empty");
+                            break; // If I don't have this it will crash when queue is empty and user types -
+                        }
+                        value = theList.Dequeue();
+                        Console.WriteLine($"Remove: '{value}', Count: {theList.Count}");
+                        break;
+                    case 'x':
+                        return;
+                    default:
+                        Console.WriteLine("Use commands starting with + or -");
+                        break;
+                }
+            }
         }
 
         /// <summary>
