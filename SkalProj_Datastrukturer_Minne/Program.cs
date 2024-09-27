@@ -33,12 +33,15 @@ namespace SkalProj_Datastrukturer_Minne
                 switch (input)
                 {
                     case '1':
+                        Console.WriteLine("EL");
                         ExamineList();
                         break;
                     case '2':
+                        Console.WriteLine("EQ");
                         ExamineQueue();
                         break;
                     case '3':
+                        Console.WriteLine("ES");
                         ExamineStack();
                         break;
                     case '4':
@@ -76,7 +79,9 @@ namespace SkalProj_Datastrukturer_Minne
             List<string> theList = new List<string>();
             while (true)
             {
-                Console.WriteLine(" +word = add 'word' to the list\n -word = remove 'word' from the list\n x = exit to main menu");
+                Console.WriteLine(" +word = add 'word' to the list");
+                Console.WriteLine(" -word = remove 'word' from the list");
+                Console.WriteLine(" x = exit to main menu");
                 string input = Console.ReadLine(); //  +Pölsa   -Pölsa
                 char nav = input[0]; // + or -
                 string value = input.Substring(1); // Pölsa
@@ -121,27 +126,30 @@ namespace SkalProj_Datastrukturer_Minne
              * Create a switch with cases to enqueue items or dequeue items
              * Make sure to look at the queue after Enqueueing and Dequeueing to see how it behaves
             */
-            Queue<string> theList = new Queue<string>();
+            Queue<string> theQueue = new Queue<string>();
             while (true)
             {
-                Console.WriteLine(" +name = add 'name' to the queue\n - = remove the first in the queue \n x = exit to main menu");
+                Console.WriteLine(" +name = add 'name' to the queue");
+                Console.WriteLine(" - = remove the first in the queue");
+                Console.WriteLine(" x = exit to main menu");
                 string input = Console.ReadLine(); //  +Pölsa   -Pölsa
                 char nav = input[0]; // + or -
                 string value = input.Substring(1); // Pölsa
                 switch (nav)
                 {
                     case '+':
-                        theList.Enqueue(value);
-                        Console.WriteLine($"Add: '{value}', Count: {theList.Count}");
+                        theQueue.Enqueue(value);
+                        Console.WriteLine($"Add: '{value}', Count: {theQueue.Count}");
                         break;
                     case '-':
-                        if (theList.Count == 0)
+                        if (theQueue.Count == 0)
                         {
                             Console.WriteLine("The queue is already empty");
                             break; // If I don't have this it will crash when queue is empty and user types -
                         }
-                        value = theList.Dequeue();
-                        Console.WriteLine($"Remove: '{value}', Count: {theList.Count}");
+
+                        value = theQueue.Dequeue();
+                        Console.WriteLine($"Remove: '{value}', Count: {theQueue.Count}");
                         break;
                     case 'x':
                         return;
@@ -162,6 +170,67 @@ namespace SkalProj_Datastrukturer_Minne
              * Create a switch with cases to push or pop items
              * Make sure to look at the stack after pushing and and poping to see how it behaves
             */
+
+            Stack<string> theStack = new Stack<string>();
+            while (true)
+            {
+                Console.WriteLine(" +name = add 'name' to the stack");
+                Console.WriteLine(" - = remove the first in the stack");
+                Console.WriteLine(" r = reverse some text");
+                Console.WriteLine(" x = exit to main menu");
+                string input = Console.ReadLine(); //  
+                char nav = input[0]; // + or -
+                string value = input.Substring(1); // Pölsa
+                switch (nav)
+                {
+                    case '+':
+                        theStack.Push(value);
+                        Console.WriteLine($"Add: '{value}', Count: {theStack.Count}");
+                        break;
+                    case '-':
+                        if (theStack.Count == 0)
+                        {
+                            Console.WriteLine("The stack is already empty");
+                            break; // If I don't have this it will crash when queue is empty and user types -
+                        }
+
+                        value = theStack.Pop();
+                        Console.WriteLine($"Remove: '{value}', Count: {theStack.Count}");
+                        break;
+                    case 'r':
+                        ReverseText();
+                        break;
+                    case 'x':
+                        return;
+                    default:
+                        Console.WriteLine("Use commands starting with + or -");
+                        break;
+                }
+            }
+            // 1. Det är inte så smart att använda en stack till ICA-kön för att den som går till kassan först får vänta till sist.
+        }
+
+        static void ReverseText()
+        {
+            Stack<char> theStack = new Stack<char>();
+            Console.WriteLine(" write some text to reverse");
+            string? input = Console.ReadLine();
+            if (input == null)
+            {
+                return;
+            }
+            foreach (char c in input)
+            {
+                theStack.Push(c);
+            }
+
+            string inputReversed = "";
+            while (theStack.Count > 0)
+            {
+                inputReversed += theStack.Pop();
+            }
+
+            Console.WriteLine(inputReversed);
         }
 
         static void CheckParanthesis()
@@ -171,6 +240,7 @@ namespace SkalProj_Datastrukturer_Minne
              * Example of correct: (()), {}, [({})],  List<int> list = new List<int>() { 1, 2, 3, 4 };
              * Example of incorrect: (()]), [), {[()}],  List<int> list = new List<int>() { 1, 2, 3, 4 );
              */
+
         }
     }
 }
