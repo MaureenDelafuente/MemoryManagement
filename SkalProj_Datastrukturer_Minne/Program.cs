@@ -219,6 +219,7 @@ namespace SkalProj_Datastrukturer_Minne
             {
                 return;
             }
+
             foreach (char c in input)
             {
                 theStack.Push(c);
@@ -240,7 +241,49 @@ namespace SkalProj_Datastrukturer_Minne
              * Example of correct: (()), {}, [({})],  List<int> list = new List<int>() { 1, 2, 3, 4 };
              * Example of incorrect: (()]), [), {[()}],  List<int> list = new List<int>() { 1, 2, 3, 4 );
              */
+            // 1. Jag använder en stack
+            Stack<char> theStack = new Stack<char>();
+            Console.WriteLine(" write some parenthesis and brackets");
+            string? input = Console.ReadLine();
+            if (input == null)
+            {
+                return;
+            }
 
+            foreach (char c in input)
+            {
+                switch (c)
+                {
+                    case '(':
+                    case '[':
+                    case '{':
+                        theStack.Push(c);
+                        break;
+                    case ')':
+                        if (theStack.Count == 0 || theStack.Pop() != '(')
+                        {
+                            Console.WriteLine("Incorrect");
+                            return;
+                        }
+                        break;
+                    case ']':
+                        if (theStack.Count == 0 || theStack.Pop() != '[')
+                        {
+                            Console.WriteLine("Incorrect");
+                            return;
+                        }
+                        break;
+                    case '}':
+                        if (theStack.Count == 0 || theStack.Pop() != '{')
+                        {
+                            Console.WriteLine("Incorrect");
+                            return;
+                        }
+                        break;
+                }
+            }
+            // the stack should be empty now if the string was correct
+            Console.WriteLine(theStack.Count == 0 ? "Correct" : "Incorrect");
         }
     }
 }
