@@ -287,3 +287,21 @@ namespace SkalProj_Datastrukturer_Minne
         }
     }
 }
+
+/*
+ * Frågor:
+Hur fungerar stacken och heapen? Förklara gärna med exempel eller skiss på dess
+grundläggande funktion
+En stack är som saker som ligger staplade på varandra och man kan bara komma åt den som är högst upp. 
+En heap är mer som saker som är utspridda i en lös hög och man kan nå alla saker direkt om man vet var de ligger.
+Stacken i ett program sparar vilka anrop och metoder som körs, och man kan bara komma åt det som hör till metoden som körs just nu, när den gör return så tas dens saker bort från stacken. 
+Variabler som sparas i stacken kan ha sin data direkt där om de är värdetyper, eller så pekar de till heapen om det är en referenstyp. Värdetyper kan också ligga på heapen om de för exempel hör till en klass och inte skapas lokalt i en metod. 
+
+2Vad är Value Types respektive Reference Types och vad skiljer dem åt?
+Värdetyper är grundläggande datatyper som bool, int, double och char och kan lagras både i stacken om de skapas lokalt i en metod, eller i heapen.
+Referenstyper är objekt som skapas av klasser och interface och liknande och har metoder och kan innehålla fält med både värdetyper och andra referenstyper. De kan bara lagras i heapen 
+Följande metoder (se bild nedan) genererar olika svar. Den första returnerar 3, den
+andra returnerar 4, varför? 
+Den första använder bara värdetyper och därför är det värdet som kopieras till y med y = x, så när y ändras igen ändras bara y.
+Den andra använder en referenstyp MyInt, så när den kör y = x så gör det att y också pekar till samma instans av MyInt, och när den ändrar y.MyValue är det samma objekt som x pekar på som ändras
+ */
